@@ -1,5 +1,7 @@
 # FinView
 
+[Open the live FinView sandbox demo](https://finview-q81m.onrender.com/)
+
 A dark dashboard demo for connecting sandbox bank accounts through Plaid and synchronizing transactions into SQLite. Built with Node.js, Express, plain JavaScript, and Bootstrap.
 
 ## Run locally
