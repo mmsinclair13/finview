@@ -11,7 +11,7 @@ let db;
 fs.mkdirSync(databaseDirectory, { recursive: true });
 const existingDatabase = fs.existsSync(databaseFile);
 
-dbWrapper
+const ready = dbWrapper
   .open({ filename: databaseFile, driver: sqlite3.Database })
   .then(async (dBase) => {
     db = dBase;
@@ -40,13 +40,13 @@ dbWrapper
       console.log("Database loaded.");
     }
   })
-  .catch((err) => console.error("Database init error:", err));
+  .then(() => require("./demo-data").seedDemo(db));
 
 const addUser = async (userId, username) =>
   db.run(`INSERT INTO users(id, username) VALUES(?, ?)`, userId, username);
 
 const getUserList = async () =>
-  db.all(`SELECT id, username FROM users ORDER BY rowid DESC`);
+  db.all(`SELECT id, username FROM users ORDER BY (username='test') DESC, rowid DESC`);
 
 const getUserRecord = async (userId) =>
   db.get(`SELECT * FROM users WHERE id=?`, userId);
@@ -166,6 +166,7 @@ const getTransactionsForUser = async (userId, maxNum) =>
   );
 
 module.exports = {
+  ready,
   addUser,
   getUserList,
   getUserRecord,

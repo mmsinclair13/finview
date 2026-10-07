@@ -9,7 +9,9 @@ A dark dashboard demo for connecting sandbox bank accounts through Plaid and syn
 1. Install Node.js and run `npm ci`.
 2. Copy `.env.example` to `.env` and add your Plaid sandbox credentials.
 3. Run `npm start` and open http://localhost:8000.
-4. Create or select a user, connect a sandbox bank, and sync transactions.
+4. Select the default `test` user to explore six months of synthetic transactions, or create your own user to connect a Plaid sandbox bank and sync transactions.
+
+The `test` user is seeded automatically once per database with payroll, rent, utilities, subscriptions, purchases, and refunds. Demo bank records are excluded from Plaid sync and disconnection controls. Existing users and their bank connections are preserved. Dashboard summaries still cover the latest 100 transactions.
 
 The database directory is created automatically. Local credentials, databases, and dependencies are excluded from Git.
 

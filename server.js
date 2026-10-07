@@ -324,6 +324,11 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(APP_PORT, () => {
-  console.log(`FinView Sandbox Demo → http://localhost:${APP_PORT}/`);
+db.ready.then(() => {
+  app.listen(APP_PORT, () => {
+    console.log(`FinView Sandbox Demo → http://localhost:${APP_PORT}/`);
+  });
+}).catch((err) => {
+  console.error("Database initialization failed:", err);
+  process.exitCode = 1;
 });

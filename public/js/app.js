@@ -133,7 +133,7 @@ async function checkSession() {
       hide("loginSection");
       show("dashboard");
       // Welcome message + avatar
-      setText("welcomeMessage", `Signed in as ${userInfo.username}`);
+      setText("welcomeMessage", `Signed in as ${userInfo.username}${userInfo.username === "test" ? " · Synthetic demo data" : ""}`);
       const initial = userInfo.username.charAt(0).toUpperCase();
       setText("userAvatar", initial);
       await refreshBanks();
