@@ -15,6 +15,12 @@ The database directory is created automatically. Local credentials, databases, a
 
 Use branches for changes and commit meaningful checkpoints. After configuring a GitHub remote, push commits to back up the source and collaborate.
 
+## Deploy on Render
+
+Create a Render Blueprint from this private GitHub repository. The included `render.yaml` configures a Node.js web service and a 1 GB persistent disk for SQLite. This uses a paid Starter service; review the displayed charges before deploying.
+
+Provide `PLAID_CLIENT_ID` and `PLAID_SECRET` using sandbox credentials in Render's environment settings. Never commit these values. Render supplies `PORT`; `DATA_DIR=/var/data` keeps database writes on the persistent disk. The hosted database starts empty, independently of your local data. GitHub updates trigger new deployments.
+
 ## Demo limitations
 
 This is a sandbox prototype. The user selector is not secure authentication and Plaid access tokens are stored directly in SQLite. Sync runs on connection or manually; there is no scheduler or webhook handler. Dashboard summaries use the latest 100 loaded transactions.

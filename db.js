@@ -3,10 +3,12 @@ const sqlite3 = require("sqlite3").verbose();
 const dbWrapper = require("sqlite");
 const crypto = require("crypto");
 
-const databaseFile = "./database/appdata.db";
+const path = require("path");
+const databaseDirectory = process.env.DATA_DIR || path.join(__dirname, "database");
+const databaseFile = path.join(databaseDirectory, "appdata.db");
 let db;
 
-fs.mkdirSync("./database", { recursive: true });
+fs.mkdirSync(databaseDirectory, { recursive: true });
 const existingDatabase = fs.existsSync(databaseFile);
 
 dbWrapper

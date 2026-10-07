@@ -13,7 +13,7 @@ const db = require("./db");
 // of where Node is launched from
 process.chdir(__dirname);
 
-const APP_PORT = process.env.APP_PORT || 8000;
+const APP_PORT = process.env.PORT || process.env.APP_PORT || 8000;
 const PLAID_ENV = (process.env.PLAID_ENV || "sandbox").toLowerCase();
 
 const plaidConfig = new Configuration({
